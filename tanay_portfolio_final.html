@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tanay Damre — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f7ff;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER / NAV ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #e8e4ff;
+      padding: 1rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-size: 1.3rem; font-weight: 700;
+      color: #1a1a2e; text-decoration: none;
+    }
+    .logo span { color: #6c5ce7; }
+
+    nav ul { display: flex; gap: 2rem; list-style: none; }
+    nav a {
+      text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; color: #666;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #6c5ce7; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, #f0eeff 0%, #ffffff 60%, #ede8ff 100%);
+      position: relative; overflow: hidden;
+    }
+
+    /* Ambient blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); pointer-events: none;
+      animation: blobFloat 10s ease-in-out infinite;
+    }
+    .blob-1 { width: 500px; height: 500px; background: rgba(162,155,254,0.3); top: -150px; left: -120px; }
+    .blob-2 { width: 420px; height: 420px; background: rgba(108,92,231,0.15); bottom: -100px; right: -100px; animation-delay: -4s; }
+    .blob-3 { width: 280px; height: 280px; background: rgba(195,185,255,0.22); top: 38%; left: 28%; animation-delay: -7s; }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%       { transform: translate(18px, -25px) scale(1.04); }
+    }
+
+    /* Floating skill tags */
+    .float-tag {
+      position: absolute; z-index: 2;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(108, 92, 231, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 20px; padding: 0.35rem 0.9rem;
+      font-size: 0.74rem; font-weight: 600;
+      color: #6c5ce7; pointer-events: none;
+      white-space: nowrap;
+    }
+    .ft-numpy   { top: 22%; left: 6%;  animation: drift1 7s ease-in-out infinite; }
+    .ft-sql     { top: 35%; right: 6%; animation: drift2 9s ease-in-out infinite; }
+    .ft-tableau { bottom: 30%; left: 8%; animation: drift1 8s ease-in-out infinite 1s; }
+    .ft-python  { bottom: 24%; right: 7%; animation: drift2 6s ease-in-out infinite 2s; }
+    .ft-nlp     { top: 62%; left: 5%; animation: drift1 10s ease-in-out infinite 0.5s; }
+
+    @keyframes drift1 {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      33%  { transform: translateY(-10px) translateX(5px); }
+      66%  { transform: translateY(7px) translateX(-4px); }
+    }
+    @keyframes drift2 {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      33%  { transform: translateY(8px) translateX(-7px); }
+      66%  { transform: translateY(-5px) translateX(4px); }
+    }
+
+    /* Hero content */
+    .hero-content { position: relative; z-index: 3; }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.8); border: 1px solid #e0d8ff;
+      border-radius: 20px; padding: 0.35rem 1rem;
+      font-size: 0.78rem; color: #888; margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700; color: #1a1a2e;
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+
+    .hero-roles {
+      font-size: 0.95rem; color: #666; margin-bottom: 0.8rem;
+    }
+    .hero-tagline {
+      font-size: 1rem; color: #6c5ce7;
+      font-style: italic; margin-bottom: 2rem;
+    }
+    .hero-btn {
+      background: #1a1a2e; color: white;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .hero-btn:hover { background: #6c5ce7; }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #6c5ce7; margin-bottom: 0.5rem;
+    }
+    h2 { font-size: 1.9rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.5rem; }
+    h3 { font-size: 1.05rem; font-weight: 700; color: #1a1a2e; }
+    h4 { font-size: 0.9rem; font-weight: 600; color: #1a1a2e; }
+    h5 { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 0.5rem; }
+    h6 { font-size: 0.7rem; font-weight: 600; color: #6c5ce7; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .section-sub { font-size: 0.92rem; color: #888; margin-bottom: 2.5rem; }
+
+    /* ── ABOUT ── */
+    #about { background: white; }
+    .about-text {
+      font-size: 0.95rem; color: #444; line-height: 1.8;
+      max-width: 640px; margin-bottom: 2rem;
+    }
+    .about-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .about-card {
+      background: #f8f7ff; border: 1px solid #e8e4ff;
+      border-radius: 12px; padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .about-card:hover { box-shadow: 0 6px 20px rgba(108,92,231,0.1); }
+    .about-card .icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    .about-card p { font-size: 0.8rem; color: #888; line-height: 1.5; margin-top: 0.3rem; }
+
+    /* skills list */
+    .skills-list {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .skill-tag {
+      background: #f0eeff; border: 1px solid #dcd4ff;
+      border-radius: 6px; padding: 0.28rem 0.7rem;
+      font-size: 0.74rem; font-weight: 500; color: #6c5ce7;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: #f8f7ff; }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+    }
+
+    article.project-card {
+      background: white; border: 1px solid #e8e4ff;
+      border-radius: 14px; padding: 1.6rem;
+      transition: box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    article.project-card:hover { box-shadow: 0 8px 24px rgba(108,92,231,0.1); }
+    .project-event { font-size: 0.7rem; font-weight: 600; color: #6c5ce7; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    .project-role  { font-size: 0.78rem; color: #888; margin-bottom: 0.8rem; }
+    .project-card > p { font-size: 0.83rem; color: #555; line-height: 1.6; margin-bottom: 1rem; }
+    .features-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 0.4rem; }
+
+    .project-card ul {
+      list-style: none; margin-bottom: 1rem;
+    }
+    .project-card li { font-size: 0.8rem; color: #555; padding: 0.12rem 0; }
+    .project-card li::before { content: '• '; color: #a29bfe; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; margin-top: auto; }
+    .tag {
+      background: #f0eeff; color: #6c5ce7;
+      font-size: 0.7rem; font-weight: 500;
+      padding: 0.22rem 0.65rem; border-radius: 4px;
+    }
+    .project-link {
+      display: inline-block; font-size: 0.78rem; font-weight: 600;
+      color: #6c5ce7; text-decoration: none;
+      border: 1px solid #dcd4ff; border-radius: 6px;
+      padding: 0.38rem 0.85rem; transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .project-link:hover { background: #6c5ce7; color: white; }
+
+    /* ── CREDENTIALS ── */
+    #credentials { background: white; }
+    .creds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    article.cred-card {
+      background: #f8f7ff; border: 1px solid #e8e4ff;
+      border-radius: 12px; padding: 1.4rem;
+      transition: box-shadow 0.2s;
+    }
+    article.cred-card:hover { box-shadow: 0 6px 20px rgba(108,92,231,0.08); }
+    article.cred-card .icon { font-size: 1.2rem; margin-bottom: 0.7rem; }
+    article.cred-card h4 {
+      margin-bottom: 0.8rem; color: #1a1a2e;
+      border-bottom: 1px solid #e8e4ff; padding-bottom: 0.5rem;
+    }
+    .cred-list { list-style: none; }
+    .cred-list li { margin-bottom: 0.55rem; }
+    .cred-name   { font-size: 0.8rem; color: #444; display: block; }
+    .cred-issuer { font-size: 0.7rem; color: #6c5ce7; font-weight: 600; display: block; }
+    .creds-note  { font-size: 0.8rem; color: #888; margin-top: 1.2rem; }
+
+    /* ── JOURNEY ── */
+    #journey { background: #f8f7ff; }
+    .journey-main {
+      background: white; border: 1px solid #e8e4ff;
+      border-radius: 14px; padding: 2rem; margin-bottom: 1.2rem;
+    }
+    .journey-date { font-size: 0.78rem; color: #6c5ce7; font-weight: 600; margin-bottom: 1.2rem; }
+    .journey-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .j-col ul { list-style: none; }
+    .j-col li { font-size: 0.82rem; color: #555; padding: 0.15rem 0; }
+    .j-col li::before { content: '• '; color: #a29bfe; }
+    .journey-note {
+      background: #f0eeff; border-left: 3px solid #6c5ce7;
+      border-radius: 0 8px 8px 0; padding: 0.8rem 1rem;
+      margin-top: 1.2rem; font-size: 0.82rem; color: #555; line-height: 1.6;
+    }
+    .journey-small { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .j-small-card {
+      background: white; border: 1px solid #e8e4ff;
+      border-radius: 12px; padding: 1.4rem;
+    }
+    .j-small-card h4 { margin-bottom: 0.8rem; }
+    .j-small-card .tags { margin: 0; }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: white; }
+    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    article.ach-card {
+      background: #f8f7ff; border: 1px solid #e8e4ff;
+      border-radius: 12px; padding: 1.7rem;
+      transition: box-shadow 0.2s;
+    }
+    article.ach-card:hover { box-shadow: 0 6px 20px rgba(108,92,231,0.08); }
+    .ach-cat   { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #999; margin-bottom: 0.4rem; }
+    .ach-icon  { font-size: 1.5rem; margin-bottom: 0.7rem; }
+    article.ach-card > p { font-size: 0.82rem; color: #666; line-height: 1.6; margin-bottom: 1rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: #f8f7ff; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 0.8rem; }
+    .ci {
+      background: white; border: 1px solid #e8e4ff;
+      border-radius: 10px; padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: 0.9rem;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.2s;
+    }
+    .ci:hover { box-shadow: 0 4px 14px rgba(108,92,231,0.1); }
+    .ci-icon  { font-size: 1.1rem; flex-shrink: 0; }
+    .ci-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999; }
+    .ci-val   { font-size: 0.85rem; font-weight: 500; color: #1a1a2e; }
+
+    .contact-form {
+      background: white; border: 1px solid #e8e4ff;
+      border-radius: 14px; padding: 2rem;
+    }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem;
+      font-weight: 600; margin-bottom: 0.35rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; font-family: 'Poppins', sans-serif;
+      background: #f8f7ff; border: 1px solid #e8e4ff;
+      border-radius: 8px; padding: 0.7rem 0.9rem;
+      font-size: 0.85rem; color: #1a1a2e; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #6c5ce7; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #bbb; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-send {
+      width: 100%; padding: 0.85rem;
+      background: #1a1a2e; color: white; border: none;
+      border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-send:hover { background: #6c5ce7; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a2e; color: rgba(255,255,255,0.4);
+      text-align: center; padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+    footer strong { color: #a29bfe; }
+    footer a { color: #a29bfe; text-decoration: none; margin: 0 0.4rem; }
+    footer a:hover { color: white; }
+
+    /* ── MEDIA QUERIES ── */
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .creds-grid { grid-template-columns: 1fr 1fr; }
+      .about-cards { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      header { padding: 1rem 1.2rem; }
+      nav ul { display: none; }
+      .float-tag { display: none; }
+      h1 { font-size: 2.4rem; }
+      .about-cards, .projects-grid, .creds-grid,
+      .ach-grid, .journey-small, .contact-grid,
+      .journey-cols { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 1.2rem; }
+      .journey-main { padding: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <a href="#home" class="logo">TD<span>.</span></a>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══════════════════ HERO / HOME ═══════════════════ -->
+<section id="home">
+  <!-- Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Floating skill tags -->
+  <span class="float-tag ft-numpy">NumPy</span>
+  <span class="float-tag ft-sql">Oracle SQL</span>
+  <span class="float-tag ft-tableau">Tableau</span>
+  <span class="float-tag ft-python">Python (OOP)</span>
+  <span class="float-tag ft-nlp">NLP</span>
+
+  <div class="hero-content">
+    <p class="hero-badge">📍 Alandi, Pune | Nashik, Maharashtra</p>
+    <h1>Tanay Damre</h1>
+    <p class="hero-roles">B.Tech Data Science Student &nbsp;|&nbsp; AI Builder &nbsp;|&nbsp; Competitive Athlete</p>
+    <p class="hero-tagline">Engineering precision meets athletic discipline.</p>
+    <a href="#projects" class="hero-btn">Explore My Work ↓</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section id="about">
+  <div class="container">
+    <h6>About</h6>
+    <h2>Executive Summary</h2>
+    <p class="about-text">
+      Data Science student focused on building functional AI systems with a strong emphasis on real-world problem solving, system design, and production-level thinking. I combine programming, AI development, and athletic discipline to deliver high-performance solutions.
+    </p>
+
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="icon">🤖</div>
+        <h4>AI Systems</h4>
+        <p>Building functional AI systems with production-level thinking</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🌐</div>
+        <h4>Problem Solving</h4>
+        <p>Real-world problem solving through data-driven approaches</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">⚡</div>
+        <h4>Athletic Discipline</h4>
+        <p>High-performance mindset from competitive athletics</p>
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:0.6rem;">Technical Skills</h4>
+    <ul class="skills-list">
+      <li class="skill-tag">Python (OOP)</li>
+      <li class="skill-tag">C</li>
+      <li class="skill-tag">JavaScript</li>
+      <li class="skill-tag">Oracle SQL</li>
+      <li class="skill-tag">NumPy</li>
+      <li class="skill-tag">Tableau</li>
+      <li class="skill-tag">Orange Tool</li>
+      <li class="skill-tag">NLP</li>
+      <li class="skill-tag">LLM Prompt Engineering</li>
+      <li class="skill-tag">DOM Scraping</li>
+      <li class="skill-tag">React</li>
+      <li class="skill-tag">Node.js</li>
+      <li class="skill-tag">MongoDB</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ PROJECTS ═══════════════════ -->
+<section id="projects">
+  <div class="container">
+    <h6>Projects</h6>
+    <h2>Featured Work</h2>
+    <p class="section-sub">Production-ready projects that demonstrate full-stack thinking and AI integration.</p>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <article class="project-card">
+        <h6 class="project-event">Datemon 2026</h6>
+        <h3>Smart Internship Tracker</h3>
+        <p class="project-role">Lead Developer — Team QuadraQuorum</p>
+        <p>Full-stack modular system with scalable backend services and internship lifecycle tracking database.</p>
+        <p class="features-label">Key Features</p>
+        <ul>
+          <li>Chrome Extension with DOM scraping</li>
+          <li>NLP Resume–JD Matching</li>
+          <li>Automated reminders via node-cron</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">MongoDB</span>
+        </div>
+        <a href="https://brilliant-pavlova-35d62b.netlify.app" target="_blank" class="project-link">↗ View Live</a>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card">
+        <h3>AI Banking Chatbot</h3>
+        <p class="project-role">Developer</p>
+        <p>Conversational interface for real-time banking queries with a structured NLP dialogue system and web deployment.</p>
+        <p class="features-label">Key Features</p>
+        <ul>
+          <li>Conversational NLP interface</li>
+          <li>Real-time banking queries</li>
+          <li>Structured dialogue system</li>
+          <li>Web deployment on Netlify</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">AI/NLP</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Web Deployment</span>
+        </div>
+        <a href="https://singular-chaja-ae872c.netlify.app" target="_blank" class="project-link">↗ View Live</a>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card">
+        <h3>Student Data Dashboard</h3>
+        <p class="project-role">Solo Developer</p>
+        <p>An exploratory data analysis and visualization dashboard built to analyse academic performance trends using real dataset workflows.</p>
+        <p class="features-label">Key Features</p>
+        <ul>
+          <li>Data cleaning with NumPy &amp; Pandas</li>
+          <li>Visual analytics using Tableau</li>
+          <li>Classification model via Orange Tool</li>
+          <li>Interactive filters and charts</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Orange Tool</span>
+        </div>
+        <a href="https://github.com/tanaydamre" target="_blank" class="project-link">↗ View Code</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CREDENTIALS ═══════════════════ -->
+<section id="credentials">
+  <div class="container">
+    <h6>Credentials</h6>
+    <h2>Professional Certifications</h2>
+    <p class="section-sub">Verified credentials from leading technology companies and institutions.</p>
+
+    <div class="creds-grid">
+
+      <article class="cred-card">
+        <div class="icon">✨</div>
+        <h4>AI / LLM Systems — Anthropic</h4>
+        <ul class="cred-list">
+          <li><span class="cred-name">AI Fluency Framework</span><span class="cred-issuer">Anthropic</span></li>
+          <li><span class="cred-name">Claude 101</span><span class="cred-issuer">Anthropic</span></li>
+          <li><span class="cred-name">AI Fluency for Students</span><span class="cred-issuer">Anthropic</span></li>
+          <li><span class="cred-name">AI Fluency for Nonprofits</span><span class="cred-issuer">Anthropic</span></li>
+        </ul>
+      </article>
+
+      <article class="cred-card">
+        <div class="icon">🐍</div>
+        <h4>Python — Cisco</h4>
+        <ul class="cred-list">
+          <li><span class="cred-name">Python Essentials 1</span><span class="cred-issuer">Cisco / MITAOE</span></li>
+          <li><span class="cred-name">Python Essentials 2 (OOP)</span><span class="cred-issuer">Cisco</span></li>
+        </ul>
+      </article>
+
+      <article class="cred-card">
+        <div class="icon">🧠</div>
+        <h4>IBM Learning</h4>
+        <ul class="cred-list">
+          <li><span class="cred-name">IBM AI Fundamentals</span><span class="cred-issuer">IBM</span></li>
+          <li><span class="cred-name">Career Management Essentials</span><span class="cred-issuer">IBM</span></li>
+        </ul>
+      </article>
+
+      <article class="cred-card">
+        <div class="icon">🌐</div>
+        <h4>Web Development</h4>
+        <ul class="cred-list">
+          <li><span class="cred-name">JavaScript Intensive (30 Hours)</span><span class="cred-issuer">Codecademy / IBM</span></li>
+        </ul>
+      </article>
+
+    </div>
+    <p class="creds-note">✦ 9 verified credentials &nbsp;·&nbsp; 100+ hours of training</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ JOURNEY ═══════════════════ -->
+<section id="journey">
+  <div class="container">
+    <h6>Journey</h6>
+    <h2>Global Exposure &amp; Leadership</h2>
+    <p class="section-sub">Cross-cultural experiences and leadership roles that shape a global perspective.</p>
+
+    <div class="journey-main">
+      <h3>Inspiring Japan Program</h3>
+      <p class="journey-date">February 2026</p>
+      <div class="journey-cols">
+        <div class="j-col">
+          <h5>🏭 Industrial Exposure</h5>
+          <ul>
+            <li>Yakult — quality management at scale</li>
+            <li>Somea Q Paint Company — production discipline</li>
+          </ul>
+        </div>
+        <div class="j-col">
+          <h5>🔧 Engineering Insight</h5>
+          <ul>
+            <li>Metropolitan G-Cans Flood System</li>
+            <li>Disaster management logic</li>
+            <li>Large-scale infrastructure design</li>
+          </ul>
+        </div>
+        <div class="j-col">
+          <h5>💡 Skills Developed</h5>
+          <ul>
+            <li>Discipline &amp; Punctuality</li>
+            <li>Cross-cultural teamwork</li>
+            <li>Observation-driven analysis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="journey-note">
+        Studying the G-Cans underground discharge channel provided a live case study in disaster resilience, directly shaping how I think about fault tolerance in software systems.
+      </div>
+    </div>
+
+    <div class="journey-small">
+      <div class="j-small-card">
+        <h4>🏛 Model United Nations (MUN)</h4>
+        <div class="tags">
+          <span class="tag">Research</span>
+          <span class="tag">Diplomacy</span>
+          <span class="tag">Structured Argumentation</span>
+        </div>
+      </div>
+      <div class="j-small-card">
+        <h4>🎙 Public Speaking Certification</h4>
+        <div class="tags">
+          <span class="tag">Simplifying Complex Systems</span>
+          <span class="tag">Engaging Presentations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ACHIEVEMENTS ═══════════════════ -->
+<section id="achievements">
+  <div class="container">
+    <h6>Distinctions</h6>
+    <h2>The Polymath Edge</h2>
+    <p class="section-sub">Beyond engineering — discipline and creativity that define a well-rounded builder.</p>
+
+    <div class="ach-grid">
+      <article class="ach-card">
+        <p class="ach-cat">Sports</p>
+        <div class="ach-icon">🏅</div>
+        <h3>National Gold Medalist — Skating</h3>
+        <p>Discipline, resilience, and a competitive mindset forged through years of high-performance athletic training.</p>
+        <div class="tags">
+          <span class="tag">Discipline</span>
+          <span class="tag">Resilience</span>
+          <span class="tag">Competitive Mindset</span>
+        </div>
+      </article>
+
+      <article class="ach-card">
+        <p class="ach-cat">Music</p>
+        <div class="ach-icon">🥁</div>
+        <h3>Trinity College London — Percussion Grade 4</h3>
+        <p>Distinction in percussion from one of the world's most prestigious music examination boards.</p>
+        <div class="tags">
+          <span class="tag">Rhythm Intelligence</span>
+          <span class="tag">Pattern Recognition</span>
+          <span class="tag">Distinction Grade</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact">
+  <div class="container">
+    <h6>Contact</h6>
+    <h2>Let's Connect</h2>
+    <p class="section-sub">Have a project in mind or want to collaborate? Reach out and let's build something together.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a href="mailto:tanaydamre@gmail.com" class="ci">
+          <span class="ci-icon">📧</span>
+          <div>
+            <p class="ci-label">Email</p>
+            <p class="ci-val">tanaydamre@gmail.com</p>
+          </div>
+        </a>
+        <a href="tel:+917666361035" class="ci">
+          <span class="ci-icon">📞</span>
+          <div>
+            <p class="ci-label">Phone</p>
+            <p class="ci-val">+91 7666361035</p>
+          </div>
+        </a>
+        <div class="ci">
+          <span class="ci-icon">📍</span>
+          <div>
+            <p class="ci-label">Location</p>
+            <p class="ci-val">Alandi, Pune | Nashik, Maharashtra</p>
+          </div>
+        </div>
+        <a href="https://github.com/tanaydamre" target="_blank" class="ci">
+          <span class="ci-icon">🔗</span>
+          <div>
+            <p class="ci-label">GitHub</p>
+            <p class="ci-val">github.com/tanaydamre</p>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/tanaydamre" target="_blank" class="ci">
+          <span class="ci-icon">💼</span>
+          <div>
+            <p class="ci-label">LinkedIn</p>
+            <p class="ci-val">linkedin.com/in/tanaydamre</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-group">
+          <label for="fname">Name</label>
+          <input type="text" id="fname" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label for="femail">Email</label>
+          <input type="email" id="femail" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" placeholder="What would you like to discuss?"></textarea>
+        </div>
+        <button class="btn-send" onclick="handleSend()">Send Message ✉</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <p>© 2026 <strong>Tanay Damre</strong> &nbsp;·&nbsp;
+    <a href="https://github.com/tanaydamre" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/tanaydamre" target="_blank">LinkedIn</a>
+    <a href="mailto:tanaydamre@gmail.com">Email</a>
+  </p>
+</footer>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#6c5ce7' : '';
+    });
+  });
+
+  // Contact form → mailto
+  function handleSend() {
+    const name  = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const msg   = document.getElementById('fmsg').value.trim();
+    if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+    window.location.href =
+      `mailto:tanaydamre@gmail.com` +
+      `?subject=Portfolio Inquiry from ${encodeURIComponent(name)}` +
+      `&body=${encodeURIComponent(msg)}%0A%0AFrom: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}`;
+  }
+</script>
+
+</body>
+</html>
